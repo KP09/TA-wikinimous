@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  before_action :authorize, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_article, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @articles = Article.all
